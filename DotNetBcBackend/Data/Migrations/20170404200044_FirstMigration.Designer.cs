@@ -8,9 +8,10 @@ using DotNetBcBackend.Data;
 namespace DotNetBcBackend.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170404200044_FirstMigration")]
+    partial class FirstMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1");
@@ -22,23 +23,13 @@ namespace DotNetBcBackend.Data.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("City");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
-
-                    b.Property<DateTime>("Created");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -49,8 +40,6 @@ namespace DotNetBcBackend.Data.Migrations
 
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256);
-
-                    b.Property<bool>("NotifyJobs");
 
                     b.Property<string>("PasswordHash");
 
@@ -75,50 +64,6 @@ namespace DotNetBcBackend.Data.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("DotNetBcBackend.Models.Event", b =>
-                {
-                    b.Property<long>("Evid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Evid");
-
-                    b.Property<string>("Evbrief");
-
-                    b.Property<string>("Evbriefdesc");
-
-                    b.Property<string>("Evdate");
-
-                    b.Property<string>("Evday");
-
-                    b.Property<string>("Evdetail");
-
-                    b.Property<string>("Evloc");
-
-                    b.Property<DateTime>("Evpubdate");
-
-                    b.Property<string>("Evtime");
-
-                    b.HasKey("Evid")
-                        .HasName("PK_Events");
-
-                    b.ToTable("Events");
-                });
-
-            modelBuilder.Entity("DotNetBcBackend.Models.Sponsor", b =>
-                {
-                    b.Property<long>("Sponid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("Sponid");
-
-                    b.Property<string>("Sponimg");
-
-                    b.Property<string>("Sponname");
-
-                    b.HasKey("Sponid")
-                        .HasName("PK_Sponsor");
-
-                    b.ToTable("Sponsors");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
