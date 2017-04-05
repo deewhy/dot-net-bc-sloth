@@ -29,6 +29,11 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="1.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Design" Version="1.1.1" PrivateAssets="All" />
+    <!-- OpenIdDict -->
+    <PackageReference Include="AspNet.Security.OAuth.Validation" Version="1.0.0-*" />
+    <PackageReference Include="OpenIddict" Version="1.0.0-*" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="1.0.0-*" />
+    <PackageReference Include="OpenIddict.Mvc" Version="1.0.0-*" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />

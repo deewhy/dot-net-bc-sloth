@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DotNetBcBackend.Data;
 using DotNetBcBackend.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DotNetBcBackend.Controllers
 {
     [Produces("application/json")]
     [Route("api/APISponsors")]
+    [Authorize]
     public class APISponsorsController : Controller
     {
         private readonly ApplicationDbContext _context;

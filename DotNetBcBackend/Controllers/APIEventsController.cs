@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DotNetBcBackend.Data;
 using DotNetBcBackend.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Diagnostics;
 
 namespace DotNetBcBackend.Controllers
 {
     [Produces("application/json")]
     [Route("api/APIEvents")]
+    [Authorize]
     public class APIEventsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -25,7 +28,7 @@ namespace DotNetBcBackend.Controllers
         [HttpGet]
         public IEnumerable<Event> GetEvents()
         {
-            return _context.Events;
+            return _context.Events.OrderBy(ev => ev.Evdate);
         }
 
         // GET: api/APIEvents/5
