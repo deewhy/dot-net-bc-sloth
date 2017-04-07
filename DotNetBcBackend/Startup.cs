@@ -132,6 +132,8 @@ namespace DotNetBcBackend
             app.UseOpenIddict();
 
             app.UseMvcWithDefaultRoute();
+
+            SeedUserData.Initialize(context, app.ApplicationServices);
         }
     }
 }

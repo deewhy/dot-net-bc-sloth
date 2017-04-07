@@ -10,5 +10,6 @@ namespace DotNetBcBackend.Models
         public long Sponid { get; set; }
         public string Sponname { get; set; }
         public string Sponimg { get; set; }
+        public string Sponlink { get; set; }
     }
 }

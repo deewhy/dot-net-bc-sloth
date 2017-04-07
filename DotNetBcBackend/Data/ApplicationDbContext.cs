@@ -11,7 +11,6 @@ namespace DotNetBcBackend.Data
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        public DbSet<IdentityRole> IdentityRoles { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Sponsor> Sponsors { get; set; }
 
