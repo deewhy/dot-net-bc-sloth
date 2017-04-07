@@ -6,8 +6,14 @@ string in your appsettings.json to match the location of your project, it MUST e
 For example: "C:\\Users\\user\\git\\dot-net-bc-sloth\\DotNetBcBackend\\wwwroot\\db\\dotnetbc.sqlite;"
 
 ### Authorization :no_entry: 
-OpenIdDict has been implemented, the controllers may or may not be authorized. To authorize send a 
-x-www-form-urlencoded POST request to 'PROJECTURL + /connect/token' and use data
+OpenIdDict has been implemented, the controllers may or may not be authorized. If Visual Studio
+does not find OpenIdDict and related .csproj packages, try running dotnet restore, and then build
+**on Visual Studio** (not the console or package console) by right-clicking the project in the
+solution explorer tab on the top right and clicking on "Build". Then you'll be able to run
+the project on localhost with no problems from Visual Studio 2017.
+
+To authenticate via the Web API send a x-www-form-urlencoded POST request
+to 'PROJECTURL + /connect/token' and use the following data:
 
 Key | Value
 ------------ | -------------
