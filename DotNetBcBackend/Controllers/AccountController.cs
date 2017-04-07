@@ -112,7 +112,16 @@ namespace DotNetBcBackend.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                var user = new ApplicationUser {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    City = model.City,
+                    NotifyJobs = model.NotifyJobs,
+                    LockoutEnabled = true,
+                    IsActive = true
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -124,6 +133,10 @@ namespace DotNetBcBackend.Controllers
                     //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User created a new account with password.");
+
+                    //give newly registered member the role of Member
+                    await _userManager.AddToRoleAsync(user, "Member");
+
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);

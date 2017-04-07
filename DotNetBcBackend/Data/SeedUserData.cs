@@ -54,7 +54,7 @@ namespace DotNetBcBackend.Data
             if (!db.Users.Any(u => u.UserName == admin.UserName))
             {
                 var password = new PasswordHasher<ApplicationUser>();
-                var hashed = password.HashPassword(admin, "IN$ERTPASSWORDH3Re");
+                var hashed = password.HashPassword(admin, "iN$3RTPASSWORd");
                 admin.PasswordHash = hashed;
 
                 var userStore = new UserStore<ApplicationUser>(db);
@@ -62,10 +62,11 @@ namespace DotNetBcBackend.Data
 				
             }
 			
+            //Assign users to roles, attempt 2
 			//var userStoreTwo = new UserStore<ApplicationUser>(db);
-	        //await userStoreTwo.AddToRoleAsync(admin, "ADMIN");
+	        //await userStoreTwo.AddToRoleAsync(admin, "Admin");
 			
-            //Assign users to roles
+            //Assign users to roles, attempt 1
             //UserManager<ApplicationUser> userManager = isp.GetService<UserManager<ApplicationUser>>();
             //await userManager.AddToRoleAsync(admin, "Admin");
 
