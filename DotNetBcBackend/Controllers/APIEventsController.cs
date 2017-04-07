@@ -50,6 +50,7 @@ namespace DotNetBcBackend.Controllers
             return Ok(@event);
         }
 
+        /*
         // PUT: api/APIEvents/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEvent([FromRoute] long id, [FromBody] Event @event)
@@ -120,6 +121,7 @@ namespace DotNetBcBackend.Controllers
 
             return Ok(@event);
         }
+        */
 
         private bool EventExists(long id)
         {

@@ -13,7 +13,6 @@ namespace DotNetBcBackend.Controllers
 {
     [Produces("application/json")]
     [Route("api/APISponsors")]
-    [Authorize]
     public class APISponsorsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -49,6 +48,7 @@ namespace DotNetBcBackend.Controllers
             return Ok(sponsor);
         }
 
+        /*
         // PUT: api/APISponsors/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSponsor([FromRoute] long id, [FromBody] Sponsor sponsor)
@@ -119,6 +119,7 @@ namespace DotNetBcBackend.Controllers
 
             return Ok(sponsor);
         }
+        */
 
         private bool SponsorExists(long id)
         {
