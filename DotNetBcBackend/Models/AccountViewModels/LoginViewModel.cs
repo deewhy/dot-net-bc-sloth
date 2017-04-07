@@ -9,8 +9,14 @@ namespace DotNetBcBackend.Models.AccountViewModels
     public class LoginViewModel
     {
         [Required]
+        [Display(Name = "Username")]
+        public string UserName { get; set; }
+
+        /*
+        [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public string UserName { get; set; }
+        */
 
         [Required]
         [DataType(DataType.Password)]

@@ -64,10 +64,10 @@ namespace DotNetBcBackend.Data
             UserManager<ApplicationUser> userManager = isp.GetService<UserManager<ApplicationUser>>();
             await userManager.AddToRoleAsync(admin, "Admin");
 
-            ApplicationUser mem = await userManager.FindByNameAsync("mem");
-            await userManager.AddToRoleAsync(mem, "Member");
-            ApplicationUser test = await userManager.FindByNameAsync("test");
-            await userManager.AddToRoleAsync(test, "Member");
+            //ApplicationUser mem = await userManager.FindByNameAsync("mem");
+            //await userManager.AddToRoleAsync(mem, "Member");
+            //ApplicationUser test = await userManager.FindByNameAsync("test");
+            //await userManager.AddToRoleAsync(test, "Member");
 
             await db.SaveChangesAsync();
         }
