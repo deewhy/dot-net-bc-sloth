@@ -5,9 +5,6 @@ In order to properly use the API with a localhost MVC project, you need to chang
 string in your appsettings.json to match the location of your project, it MUST end in your //wwwroot//db//dotnetbc.sqlite
 For example: "C:\\Users\\user\\git\\dot-net-bc-sloth\\DotNetBcBackend\\wwwroot\\db\\dotnetbc.sqlite;"
 
-Once you have adjusted your connection string to point to the proper location of your sqlite file,
-you must run 'dotnet ef database update' in the root of your project. Your API should work now.
-
 ### Authorization :no_entry: 
 OpenIdDict has been implemented, the controllers may or may not be authorized. To authorize send a 
 x-www-form-urlencoded POST request to 'PROJECTURL + /connect/token' and use data
