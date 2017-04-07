@@ -13,7 +13,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot/db\dotnetbc.sqlite" />
+    <Content Include="wwwroot\db\dotnetbc.sqlite" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\db\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
@@ -43,9 +46,6 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="wwwroot\db\" />
   </ItemGroup>
 
 </Project>

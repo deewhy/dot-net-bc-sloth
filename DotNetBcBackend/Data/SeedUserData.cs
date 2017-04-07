@@ -46,23 +46,28 @@ namespace DotNetBcBackend.Data
                 NormalizedUserName = "ADMIN",
                 IsActive = true,
                 NotifyJobs = true,
-                Created = new DateTime(2017, 4, 1)
+                Created = new DateTime(2017, 4, 1),
+                SecurityStamp = Guid.NewGuid().ToString()
             };
 
             //Hash the passwords
             if (!db.Users.Any(u => u.UserName == admin.UserName))
             {
                 var password = new PasswordHasher<ApplicationUser>();
-                var hashed = password.HashPassword(admin, "IN$ERTPASSW0RDH3RE");
+                var hashed = password.HashPassword(admin, "IN$ERTPASSWORDH3Re");
                 admin.PasswordHash = hashed;
 
                 var userStore = new UserStore<ApplicationUser>(db);
                 var result = userStore.CreateAsync(admin);
+				
             }
-
+			
+			//var userStoreTwo = new UserStore<ApplicationUser>(db);
+	        //await userStoreTwo.AddToRoleAsync(admin, "ADMIN");
+			
             //Assign users to roles
-            UserManager<ApplicationUser> userManager = isp.GetService<UserManager<ApplicationUser>>();
-            await userManager.AddToRoleAsync(admin, "Admin");
+            //UserManager<ApplicationUser> userManager = isp.GetService<UserManager<ApplicationUser>>();
+            //await userManager.AddToRoleAsync(admin, "Admin");
 
             //ApplicationUser mem = await userManager.FindByNameAsync("mem");
             //await userManager.AddToRoleAsync(mem, "Member");
