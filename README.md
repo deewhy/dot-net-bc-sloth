@@ -1,18 +1,20 @@
 # :bowtie: Project Sloth: .NET BC Backend :bowtie: 
 
-### API :kissing_heart: 
-In order to properly use the API with a localhost MVC project, you need to change the connection 
-string in your appsettings.json to match the location of your project, it MUST end in your //wwwroot//db//dotnetbc.sqlite
-For example: "C:\\Users\\user\\git\\dot-net-bc-sloth\\DotNetBcBackend\\wwwroot\\db\\dotnetbc.sqlite;"
 
-### Authorization :no_entry: 
-OpenIdDict has been implemented, the controllers may or may not be authorized. If Visual Studio
-does not find OpenIdDict and related .csproj packages, try running dotnet restore, and then build
-**on Visual Studio** (not the console or package console) by right-clicking the project in the
-solution explorer tab on the top right and clicking on "Build". Then you'll be able to run
-the project on localhost with no problems from Visual Studio 2017.
 
-To authenticate via the Web API send a x-www-form-urlencoded POST request
+### Importing the projecct :kissing_heart: 
+To import the project in Visual Studio 2017, follow the next steps. Sounds stupid, but it works!
+
+1. After pulling from GitHub, go to the folder in the command line.
+1. Run dotnet restore on the project from the command line.
+1. Open the .sln solution file with Visual Studio 2017.
+1. OpenIdDict won't be recognized and that's okay. Just go to the Solution Explorer on the top-right corner and build the solution by right-clicking on the project's name and clicking on the Build option. (DO NOT BUILD FROM THE COMMAND LINE.)
+1. Go to appsettings.json and change the connection string to the full URI of the SQLite database. Something like:
+"C:\\Users\\user\\git\\dot-net-bc-sloth\\DotNetBcBackend\\wwwroot\\db\\dotnetbc.sqlite;"
+
+### Authentication and Authorization :no_entry: 
+
+Some Web APIs need authentication. To authenticate via the Web API send a x-www-form-urlencoded POST request
 to 'PROJECTURL + /connect/token' and use the following data:
 
 Key | Value
