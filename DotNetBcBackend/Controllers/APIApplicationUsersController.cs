@@ -24,16 +24,8 @@ namespace DotNetBcBackend.Controllers
             _context = context;
         }
 
-        // GET: api/APIApplicationUsers
-        [HttpGet]
-        public IEnumerable<ApplicationUser> GetApplicationUsers()
-        {
-            return _context.ApplicationUsers;
-            
-        }
-
         // GET: api/APIApplicationUsers/username/userName
-        //returns First Name, Last Name , email , and city of User
+        //returns First Name, Last Name, email, and city of ApplicationUser
         [HttpGet("username/{username}")]
         public async Task<IActionResult> GetApplicationUserByName([FromRoute] string userName)
         {
@@ -54,6 +46,7 @@ namespace DotNetBcBackend.Controllers
             return Ok(user);
         }
 
+        /*
         // GET: api/APIApplicationUsers/5
         //returns First Name, Last Name , email , and city of User
         [HttpGet("{id}")]
@@ -76,6 +69,7 @@ namespace DotNetBcBackend.Controllers
 
             
         }
+        */
 
         // PUT: api/APIApplicationUsers/5
         [HttpPut("{id}")]
@@ -127,6 +121,7 @@ namespace DotNetBcBackend.Controllers
             return CreatedAtAction("GetApplicationUser", new { id = applicationUser.Id }, applicationUser);
         }
 
+        /*
         // DELETE: api/APIApplicationUsers/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteApplicationUser([FromRoute] string id)
@@ -147,6 +142,7 @@ namespace DotNetBcBackend.Controllers
 
             return Ok(applicationUser);
         }
+        */
 
         private bool ApplicationUserExists(string id)
         {
