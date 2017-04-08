@@ -32,47 +32,50 @@ namespace DotNetBcBackend.Controllers
             
         }
 
-        // GET: api/APIApplicationUsers/userName
-        [HttpGet("{username}")]
+        // GET: api/APIApplicationUsers/username/userName
+        //returns First Name, Last Name , email , and city of User
+        [HttpGet("username/{username}")]
         public async Task<IActionResult> GetApplicationUserByName([FromRoute] string userName)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
+            var applicationUser = await _context.ApplicationUsers.SingleOrDefaultAsync(m => m.UserName == userName);
+
+            if (applicationUser == null)
+            {
+                return NotFound();
+            }
+
+            var user = new { FirstName = applicationUser.FirstName, LastName = applicationUser.LastName, Email=applicationUser.Email, City=applicationUser.City };
+            return Ok(user);
+        }
+
+        // GET: api/APIApplicationUsers/5
+        //returns First Name, Last Name , email , and city of User
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetApplicationUserById([FromRoute] string id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var applicationUser = await _context.ApplicationUsers.SingleOrDefaultAsync(m => m.UserName == userName);
-            ApplicationUser user = new ApplicationUser();
-            user.FirstName = applicationUser.FirstName;
-            user.LastName = applicationUser.LastName;
-            user.Email = applicationUser.Email;
-            user.City = applicationUser.City;
-            if (user == null)
+            var applicationUser = await _context.ApplicationUsers.SingleOrDefaultAsync(m => m.Id == id);
+
+            if (applicationUser == null)
             {
                 return NotFound();
             }
 
+            var user = new { FirstName = applicationUser.FirstName, LastName = applicationUser.LastName, Email = applicationUser.Email, City = applicationUser.City };
             return Ok(user);
+
+            
         }
-
-        //// GET: api/APIApplicationUsers/5
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> GetApplicationUser([FromRoute] string id)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    var applicationUser = await _context.ApplicationUsers.SingleOrDefaultAsync(m => m.Id == id);
-
-        //    if (applicationUser == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return Ok(applicationUser);
-        //}
 
         // PUT: api/APIApplicationUsers/5
         [HttpPut("{id}")]
