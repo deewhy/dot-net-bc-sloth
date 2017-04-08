@@ -8,7 +8,7 @@ using DotNetBcBackend.Data;
 namespace DotNetBcBackend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170407084623_FirstMigration")]
+    [Migration("20170408214119_FirstMigration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -101,9 +101,51 @@ namespace DotNetBcBackend.Migrations
                     b.Property<string>("Evtime");
 
                     b.HasKey("Evid")
-                        .HasName("PK_Events");
+                        .HasName("PK_Event");
 
                     b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("DotNetBcBackend.Models.MassEmail", b =>
+                {
+                    b.Property<long>("Emid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Emid");
+
+                    b.Property<string>("Emauthor");
+
+                    b.Property<DateTime>("Emcreateddate");
+
+                    b.Property<string>("Emtext");
+
+                    b.HasKey("Emid")
+                        .HasName("PK_MassEmail");
+
+                    b.ToTable("MassEmails");
+                });
+
+            modelBuilder.Entity("DotNetBcBackend.Models.Speaker", b =>
+                {
+                    b.Property<long>("Speakerid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Speakerid");
+
+                    b.Property<string>("Speakerbio");
+
+                    b.Property<string>("Speakeremail");
+
+                    b.Property<string>("Speakername");
+
+                    b.Property<string>("Speakerphone");
+
+                    b.Property<string>("Speakerpic");
+
+                    b.Property<string>("Speakerspec");
+
+                    b.HasKey("Speakerid")
+                        .HasName("PK_Speaker");
+
+                    b.ToTable("Speakers");
                 });
 
             modelBuilder.Entity("DotNetBcBackend.Models.Sponsor", b =>

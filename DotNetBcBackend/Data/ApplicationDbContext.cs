@@ -13,6 +13,8 @@ namespace DotNetBcBackend.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Sponsor> Sponsors { get; set; }
+        public DbSet<MassEmail> MassEmails { get; set; }
+        public DbSet<Speaker> Speakers { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -23,10 +25,11 @@ namespace DotNetBcBackend.Data
         {
             base.OnModelCreating(builder);
 
+            
             builder.Entity<Event>(entity =>
             {
                 entity.HasKey(e => e.Evid)
-                    .HasName("PK_Events");
+                    .HasName("PK_Event");
 
                 entity.Property(e => e.Evid).HasColumnName("Evid");
             });
@@ -38,6 +41,25 @@ namespace DotNetBcBackend.Data
 
                 entity.Property(e => e.Sponid).HasColumnName("Sponid");
             });
+
+            
+            builder.Entity<MassEmail>(entity =>
+            {
+                entity.HasKey(e => new { e.Emid } )
+                    .HasName("PK_MassEmail");
+
+                entity.Property(e => e.Emid).HasColumnName("Emid");
+            });
+            
+
+            builder.Entity<Speaker>(entity =>
+            {
+                entity.HasKey(e => e.Speakerid)
+                    .HasName("PK_Speaker");
+
+                entity.Property(e => e.Speakerid).HasColumnName("Speakerid");
+            });
+            
         }
     }
 }

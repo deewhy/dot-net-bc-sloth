@@ -54,27 +54,22 @@ namespace DotNetBcBackend.Data
             if (!db.Users.Any(u => u.UserName == admin.UserName))
             {
                 var password = new PasswordHasher<ApplicationUser>();
-                var hashed = password.HashPassword(admin, "iN$3RTPASSWORd");
+                var hashed = password.HashPassword(admin, "P@$$w0rd");
                 admin.PasswordHash = hashed;
 
                 var userStore = new UserStore<ApplicationUser>(db);
-                var result = userStore.CreateAsync(admin);
-				
+                await userStore.CreateAsync(admin);
+                
             }
 			
             //Assign users to roles, attempt 2
 			//var userStoreTwo = new UserStore<ApplicationUser>(db);
-	        //await userStoreTwo.AddToRoleAsync(admin, "Admin");
+	        //await userStoreTwo.AddToRoleAsync(admin, "ADMIN");
 			
             //Assign users to roles, attempt 1
             //UserManager<ApplicationUser> userManager = isp.GetService<UserManager<ApplicationUser>>();
             //await userManager.AddToRoleAsync(admin, "Admin");
-
-            //ApplicationUser mem = await userManager.FindByNameAsync("mem");
-            //await userManager.AddToRoleAsync(mem, "Member");
-            //ApplicationUser test = await userManager.FindByNameAsync("test");
-            //await userManager.AddToRoleAsync(test, "Member");
-
+            
             await db.SaveChangesAsync();
         }
 

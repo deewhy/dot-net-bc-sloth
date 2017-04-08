@@ -120,7 +120,8 @@ namespace DotNetBcBackend.Controllers
                     City = model.City,
                     NotifyJobs = model.NotifyJobs,
                     LockoutEnabled = true,
-                    IsActive = true
+                    IsActive = true,
+                    Created = DateTime.Now
                 };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

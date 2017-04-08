@@ -56,7 +56,40 @@ namespace DotNetBcBackend.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Events", x => x.Evid);
+                    table.PrimaryKey("PK_Event", x => x.Evid);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MassEmails",
+                columns: table => new
+                {
+                    Emid = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Emauthor = table.Column<string>(nullable: true),
+                    Emcreateddate = table.Column<DateTime>(nullable: false),
+                    Emtext = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MassEmail", x => x.Emid);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Speakers",
+                columns: table => new
+                {
+                    Speakerid = table.Column<long>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Speakerbio = table.Column<string>(nullable: true),
+                    Speakeremail = table.Column<string>(nullable: true),
+                    Speakername = table.Column<string>(nullable: true),
+                    Speakerphone = table.Column<string>(nullable: true),
+                    Speakerpic = table.Column<string>(nullable: true),
+                    Speakerspec = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Speaker", x => x.Speakerid);
                 });
 
             migrationBuilder.CreateTable(
@@ -327,6 +360,12 @@ namespace DotNetBcBackend.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Events");
+
+            migrationBuilder.DropTable(
+                name: "MassEmails");
+
+            migrationBuilder.DropTable(
+                name: "Speakers");
 
             migrationBuilder.DropTable(
                 name: "Sponsors");
