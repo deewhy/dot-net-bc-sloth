@@ -1,15 +1,16 @@
-# :bowtie: Project Sloth: .NET BC Backend :bowtie: 
+:bowtie:
+
+# Project Sloth: .NET BC Backend
 
 
-
-### Importing the projecct :kissing_heart: 
+### Importing the Project :kissing_heart: 
 To import the project in Visual Studio 2017, follow the next steps. Sounds stupid, but it works!
 
 1. After pulling from GitHub, go to the folder in the command line.
 1. Run dotnet restore on the project from the command line.
 1. Open the .sln solution file with Visual Studio 2017.
 1. OpenIdDict won't be recognized and that's okay. Just go to the Solution Explorer on the top-right corner and build the solution by right-clicking on the project's name and clicking on the Build option. (DO NOT BUILD FROM THE COMMAND LINE.)
-1. Go to appsettings.json and change the connection string to the full URI of the SQLite database. Something like:
+1. Test it. If it doesn't work, go to appsettings.json and change the connection string to the full URI of the SQLite database. Something like:
 "C:\\Users\\user\\git\\dot-net-bc-sloth\\DotNetBcBackend\\wwwroot\\db\\dotnetbc.sqlite;"
 
 ### Authentication and Authorization :no_entry: 
