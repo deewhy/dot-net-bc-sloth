@@ -9,6 +9,9 @@ using DotNetBcBackend.Data;
 using DotNetBcBackend.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using DotNetBcBackend.Models.AccountViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace DotNetBcBackend.Controllers
 {
@@ -18,10 +21,16 @@ namespace DotNetBcBackend.Controllers
     public class APIApplicationUsersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public APIApplicationUsersController(ApplicationDbContext context)
+
+        public APIApplicationUsersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager)
         {
             _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         // GET: api/APIApplicationUsers/username/userName
@@ -107,18 +116,54 @@ namespace DotNetBcBackend.Controllers
         }
 
         // POST: api/APIApplicationUsers
+        // For registering new users.
         [HttpPost]
-        public async Task<IActionResult> PostApplicationUser([FromBody] ApplicationUser applicationUser)
+        [AllowAnonymous]
+        public async Task<IActionResult> PostApplicationUser([FromBody] APIRegisterModel model)
         {
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+            
+            if (model == null)
+            {
+                return BadRequest(new { Error = "JSON object was found to be null." });
+            }
 
-            _context.ApplicationUsers.Add(applicationUser);
+            var newUser = new ApplicationUser
+            {
+                UserName = model.UserName,
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                City = model.City,
+                NotifyJobs = model.NotifyJobs,
+                LockoutEnabled = true,
+                IsActive = true,
+                Created = DateTime.Now
+            };
+
+            var result = await _userManager.CreateAsync(newUser, model.Password);
+            if (result.Succeeded)
+            {
+                await _signInManager.SignInAsync(newUser, isPersistent: false);
+
+                //give newly registered member the role of Member
+                await _userManager.AddToRoleAsync(newUser, "Member");
+
+                return CreatedAtAction("GetApplicationUser", new { UserName = model.UserName });
+            }
+            
+
+            /*
+            _context.ApplicationUsers.Add(newUser);
+            
             await _context.SaveChangesAsync();
+            */
 
-            return CreatedAtAction("GetApplicationUser", new { id = applicationUser.Id }, applicationUser);
+            return BadRequest(new { Error = "User could not be created" });
         }
 
         /*
