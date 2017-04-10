@@ -17,41 +17,48 @@ namespace DotNetBcBackend.Controllers
 {
     [Produces("application/json")]
     [Route("api/APIApplicationUsers")]
-    [Authorize]
     public class APIApplicationUsersController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-
-
+        
         public APIApplicationUsersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
+            
         }
 
-        // GET: api/APIApplicationUsers/username/userName
+        // GET: api/APIApplicationUsers/myprofile
         //returns First Name, Last Name, email, and city of ApplicationUser
-        [HttpGet("username/{username}")]
-        public async Task<IActionResult> GetApplicationUserByName([FromRoute] string userName)
+        [HttpGet("myprofile")]
+        public async Task<IActionResult> GetApplicationUserByName([FromHeader] string UserName, [FromHeader] string Password)
         {
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             
-            var applicationUser = await _context.ApplicationUsers.SingleOrDefaultAsync(m => m.UserName == userName);
+            var applicationUser = await _context.ApplicationUsers.SingleOrDefaultAsync(m => m.UserName == UserName);
 
             if (applicationUser == null)
             {
-                return NotFound();
+                return BadRequest();
+            }
+            
+            if (!await _userManager.CheckPasswordAsync(applicationUser, Password))
+            {
+                return BadRequest();
             }
 
-            var user = new { FirstName = applicationUser.FirstName, LastName = applicationUser.LastName, Email=applicationUser.Email, City=applicationUser.City };
+            var user = new { FirstName = applicationUser.FirstName,
+                LastName = applicationUser.LastName,
+                Email =applicationUser.Email,
+                City =applicationUser.City,
+                NotifyJobs =applicationUser.NotifyJobs };
             return Ok(user);
         }
 
@@ -80,19 +87,32 @@ namespace DotNetBcBackend.Controllers
         }
         */
 
-        // PUT: api/APIApplicationUsers/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutApplicationUser([FromRoute] string id, [FromBody] ApplicationUser applicationUser)
+        // PUT: api/APIApplicationUsers/myprofile
+        [HttpPut("myprofile")]
+        public async Task<IActionResult> PutApplicationUser([FromBody] APIUpdateProfileModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != applicationUser.Id)
+            var applicationUser = await _context.ApplicationUsers.SingleOrDefaultAsync(m => m.UserName == model.UserName);
+
+            if (applicationUser == null)
             {
                 return BadRequest();
             }
+
+            if (!await _userManager.CheckPasswordAsync(applicationUser, model.Password))
+            {
+                return BadRequest();
+            }
+
+            applicationUser.Email = model.Email;
+            applicationUser.FirstName = model.FirstName;
+            applicationUser.LastName = model.LastName;
+            applicationUser.City = model.City;
+            applicationUser.NotifyJobs = model.NotifyJobs;
 
             _context.Entry(applicationUser).State = EntityState.Modified;
 
@@ -102,9 +122,9 @@ namespace DotNetBcBackend.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ApplicationUserExists(id))
+                if (!ApplicationUserExists(model.UserName))
                 {
-                    return NotFound();
+                    return BadRequest();
                 }
                 else
                 {
@@ -112,13 +132,12 @@ namespace DotNetBcBackend.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok();
         }
 
         // POST: api/APIApplicationUsers
         // For registering new users.
         [HttpPost]
-        [AllowAnonymous]
         public async Task<IActionResult> PostApplicationUser([FromBody] APIRegisterModel model)
         {
             
@@ -156,13 +175,6 @@ namespace DotNetBcBackend.Controllers
                 return CreatedAtAction("GetApplicationUser", new { UserName = model.UserName });
             }
             
-
-            /*
-            _context.ApplicationUsers.Add(newUser);
-            
-            await _context.SaveChangesAsync();
-            */
-
             return BadRequest(new { Error = "User could not be created" });
         }
 
@@ -189,9 +201,9 @@ namespace DotNetBcBackend.Controllers
         }
         */
 
-        private bool ApplicationUserExists(string id)
+        private bool ApplicationUserExists(string userName)
         {
-            return _context.ApplicationUsers.Any(e => e.Id == id);
+            return _context.ApplicationUsers.Any(e => e.UserName == userName);
         }
     }
 }
