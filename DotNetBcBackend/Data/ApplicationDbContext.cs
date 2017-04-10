@@ -31,7 +31,7 @@ namespace DotNetBcBackend.Data
                 entity.HasKey(e => e.Evid)
                     .HasName("PK_Event");
 
-                entity.Property(e => e.Evid).HasColumnName("Evid");
+                entity.Property(e => e.Evid).HasColumnName("Evid").ValueGeneratedOnAdd();
             });
 
             builder.Entity<Sponsor>(entity =>
@@ -39,7 +39,7 @@ namespace DotNetBcBackend.Data
                 entity.HasKey(e => e.Sponid)
                     .HasName("PK_Sponsor");
 
-                entity.Property(e => e.Sponid).HasColumnName("Sponid");
+                entity.Property(e => e.Sponid).HasColumnName("Sponid").ValueGeneratedOnAdd();
             });
 
             
@@ -48,7 +48,7 @@ namespace DotNetBcBackend.Data
                 entity.HasKey(e => new { e.Emid } )
                     .HasName("PK_MassEmail");
 
-                entity.Property(e => e.Emid).HasColumnName("Emid");
+                entity.Property(e => e.Emid).HasColumnName("Emid").ValueGeneratedOnAdd();
             });
             
 
@@ -57,7 +57,7 @@ namespace DotNetBcBackend.Data
                 entity.HasKey(e => e.Speakerid)
                     .HasName("PK_Speaker");
 
-                entity.Property(e => e.Speakerid).HasColumnName("Speakerid");
+                entity.Property(e => e.Speakerid).HasColumnName("Speakerid").ValueGeneratedOnAdd();
             });
 
             builder.Entity<UserEvents>(entity =>
@@ -65,7 +65,7 @@ namespace DotNetBcBackend.Data
                 entity.HasKey(e => e.Usereventid)
                     .HasName("PK_UserEvents");
 
-                entity.Property(e => e.Usereventid).HasColumnName("Usereventid");
+                entity.Property(e => e.Usereventid).HasColumnName("Usereventid").ValueGeneratedOnAdd();
             });
 
         }
