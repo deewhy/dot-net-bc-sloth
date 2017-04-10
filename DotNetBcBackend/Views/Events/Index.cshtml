@@ -1,0 +1,78 @@
+﻿@model IEnumerable<DotNetBcBackend.Models.Event>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Managing Events</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Evday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Evdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Evtime)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Evloc)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Evbrief)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Evbriefdesc)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Evdetail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Evpubdate)
+                </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Evday)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Evdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Evtime)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Evloc)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Evbrief)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Evbriefdesc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Evdetail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Evpubdate)
+                    </td>*@
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Evid">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Evid">Details</a> @*|
+                        <a asp-action="Delete" asp-route-id="@item.Evid">Delete</a>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

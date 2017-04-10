@@ -1,0 +1,66 @@
+﻿@model DotNetBcBackend.Models.Event
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details of Event</h2>
+
+<div>
+    @*<h4>Event</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Evday)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evday)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evdate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evdate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evtime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evtime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evloc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evloc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evbrief)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evbrief)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evbriefdesc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evbriefdesc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evdetail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evdetail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evpubdate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evpubdate)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Evid">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

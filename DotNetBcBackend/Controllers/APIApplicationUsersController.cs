@@ -61,32 +61,7 @@ namespace DotNetBcBackend.Controllers
                 NotifyJobs =applicationUser.NotifyJobs };
             return Ok(user);
         }
-
-        /*
-        // GET: api/APIApplicationUsers/5
-        //returns First Name, Last Name , email , and city of User
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetApplicationUserById([FromRoute] string id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var applicationUser = await _context.ApplicationUsers.SingleOrDefaultAsync(m => m.Id == id);
-
-            if (applicationUser == null)
-            {
-                return NotFound();
-            }
-
-            var user = new { FirstName = applicationUser.FirstName, LastName = applicationUser.LastName, Email = applicationUser.Email, City = applicationUser.City };
-            return Ok(user);
-
-            
-        }
-        */
-
+        
         // PUT: api/APIApplicationUsers/myprofile
         [HttpPut("myprofile")]
         public async Task<IActionResult> PutApplicationUser([FromBody] APIUpdateProfileModel model)
@@ -177,29 +152,6 @@ namespace DotNetBcBackend.Controllers
             
             return BadRequest(new { Error = "User could not be created" });
         }
-
-        /*
-        // DELETE: api/APIApplicationUsers/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteApplicationUser([FromRoute] string id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var applicationUser = await _context.ApplicationUsers.SingleOrDefaultAsync(m => m.Id == id);
-            if (applicationUser == null)
-            {
-                return NotFound();
-            }
-
-            _context.ApplicationUsers.Remove(applicationUser);
-            await _context.SaveChangesAsync();
-
-            return Ok(applicationUser);
-        }
-        */
 
         private bool ApplicationUserExists(string userName)
         {

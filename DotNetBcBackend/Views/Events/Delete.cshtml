@@ -1,0 +1,71 @@
+﻿@model DotNetBcBackend.Models.Event
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="Evid" />
+        <dt>
+            @Html.DisplayNameFor(model => model.Evday)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evday)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evdate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evdate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evtime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evtime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evloc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evloc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evbrief)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evbrief)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evbriefdesc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evbriefdesc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evdetail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evdetail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Evpubdate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Evpubdate)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

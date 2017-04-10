@@ -1,0 +1,86 @@
+﻿@model DotNetBcBackend.Models.Event
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Editing Event</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        @*<h4>Event</h4>*@
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Evid" />
+        <div class="form-group">
+            <label asp-for="Evday" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Evday" class="form-control" />
+                <span asp-validation-for="Evday" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Evdate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Evdate" class="form-control" />
+                <span asp-validation-for="Evdate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Evtime" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Evtime" class="form-control" />
+                <span asp-validation-for="Evtime" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Evloc" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Evloc" class="form-control" />
+                <span asp-validation-for="Evloc" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Evbrief" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Evbrief" class="form-control" />
+                <span asp-validation-for="Evbrief" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Evbriefdesc" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Evbriefdesc" class="form-control" />
+                <span asp-validation-for="Evbriefdesc" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Evdetail" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                @*<input asp-for="Evdetail" class="form-control" />*@
+                <textarea asp-for="Evdetail" class="form-control" rows="5"></textarea>
+                <span asp-validation-for="Evdetail" class="text-danger"></span>
+            </div>
+        </div>
+        @*<div class="form-group">
+                <label asp-for="Evpubdate" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Evpubdate" class="form-control" />
+                    <span asp-validation-for="Evpubdate" class="text-danger"></span>
+                </div>
+            </div>*@
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
