@@ -1,0 +1,59 @@
+@model DotNetBcBackend.Models.Speaker
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Speaker</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="Speakerid" />
+        <dt>
+            @Html.DisplayNameFor(model => model.Speakerpic)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speakerpic)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Speakername)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speakername)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Speakeremail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speakeremail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Speakerphone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speakerphone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Speakerspec)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speakerspec)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Speakerbio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speakerbio)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

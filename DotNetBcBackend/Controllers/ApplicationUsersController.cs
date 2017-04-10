@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DotNetBcBackend.Data;
 using DotNetBcBackend.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DotNetBcBackend.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ApplicationUsersController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -49,6 +51,7 @@ namespace DotNetBcBackend.Controllers
             return View();
         }
 
+        /*
         // POST: ApplicationUsers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -64,6 +67,7 @@ namespace DotNetBcBackend.Controllers
             }
             return View(applicationUser);
         }
+        */
 
         // GET: ApplicationUsers/Edit/5
         public async Task<IActionResult> Edit(string id)

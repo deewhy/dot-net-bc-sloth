@@ -1,0 +1,70 @@
+@model DotNetBcBackend.Models.Speaker
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Speaker</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Speakerpic" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Speakerpic" class="form-control" />
+                <span asp-validation-for="Speakerpic" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Speakername" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Speakername" class="form-control" />
+                <span asp-validation-for="Speakername" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Speakeremail" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Speakeremail" class="form-control" />
+                <span asp-validation-for="Speakeremail" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Speakerphone" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Speakerphone" class="form-control" />
+                <span asp-validation-for="Speakerphone" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Speakerspec" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Speakerspec" class="form-control" />
+                <span asp-validation-for="Speakerspec" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Speakerbio" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea asp-for="Speakerbio" class="form-control" rows="8"></textarea>
+                <span asp-validation-for="Speakerbio" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

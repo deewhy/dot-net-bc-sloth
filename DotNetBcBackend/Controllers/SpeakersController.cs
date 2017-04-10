@@ -12,22 +12,22 @@ using Microsoft.AspNetCore.Authorization;
 namespace DotNetBcBackend.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class SponsorsController : Controller
+    public class SpeakersController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public SponsorsController(ApplicationDbContext context)
+        public SpeakersController(ApplicationDbContext context)
         {
             _context = context;    
         }
 
-        // GET: Sponsors
+        // GET: Speakers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Sponsors.ToListAsync());
+            return View(await _context.Speakers.ToListAsync());
         }
 
-        // GET: Sponsors/Details/5
+        // GET: Speakers/Details/5
         public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
@@ -35,39 +35,39 @@ namespace DotNetBcBackend.Controllers
                 return NotFound();
             }
 
-            var sponsor = await _context.Sponsors
-                .SingleOrDefaultAsync(m => m.Sponid == id);
-            if (sponsor == null)
+            var speaker = await _context.Speakers
+                .SingleOrDefaultAsync(m => m.Speakerid == id);
+            if (speaker == null)
             {
                 return NotFound();
             }
 
-            return View(sponsor);
+            return View(speaker);
         }
 
-        // GET: Sponsors/Create
+        // GET: Speakers/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Sponsors/Create
+        // POST: Speakers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Sponid,Sponname,Sponimg,Sponlink")] Sponsor sponsor)
+        public async Task<IActionResult> Create([Bind("Speakerid,Speakerpic,Speakername,Speakeremail,Speakerphone,Speakerspec,Speakerbio")] Speaker speaker)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(sponsor);
+                _context.Add(speaker);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(sponsor);
+            return View(speaker);
         }
 
-        // GET: Sponsors/Edit/5
+        // GET: Speakers/Edit/5
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -75,22 +75,22 @@ namespace DotNetBcBackend.Controllers
                 return NotFound();
             }
 
-            var sponsor = await _context.Sponsors.SingleOrDefaultAsync(m => m.Sponid == id);
-            if (sponsor == null)
+            var speaker = await _context.Speakers.SingleOrDefaultAsync(m => m.Speakerid == id);
+            if (speaker == null)
             {
                 return NotFound();
             }
-            return View(sponsor);
+            return View(speaker);
         }
 
-        // POST: Sponsors/Edit/5
+        // POST: Speakers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Sponid,Sponname,Sponimg,Sponlink")] Sponsor sponsor)
+        public async Task<IActionResult> Edit(long id, [Bind("Speakerid,Speakerpic,Speakername,Speakeremail,Speakerphone,Speakerspec,Speakerbio")] Speaker speaker)
         {
-            if (id != sponsor.Sponid)
+            if (id != speaker.Speakerid)
             {
                 return NotFound();
             }
@@ -99,12 +99,12 @@ namespace DotNetBcBackend.Controllers
             {
                 try
                 {
-                    _context.Update(sponsor);
+                    _context.Update(speaker);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SponsorExists(sponsor.Sponid))
+                    if (!SpeakerExists(speaker.Speakerid))
                     {
                         return NotFound();
                     }
@@ -115,10 +115,11 @@ namespace DotNetBcBackend.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(sponsor);
+            return View(speaker);
         }
 
-        // GET: Sponsors/Delete/5
+        /*
+        // GET: Speakers/Delete/5
         public async Task<IActionResult> Delete(long? id)
         {
             if (id == null)
@@ -126,30 +127,33 @@ namespace DotNetBcBackend.Controllers
                 return NotFound();
             }
 
-            var sponsor = await _context.Sponsors
-                .SingleOrDefaultAsync(m => m.Sponid == id);
-            if (sponsor == null)
+            var speaker = await _context.Speakers
+                .SingleOrDefaultAsync(m => m.Speakerid == id);
+            if (speaker == null)
             {
                 return NotFound();
             }
 
-            return View(sponsor);
+            return View(speaker);
         }
+        */
 
-        // POST: Sponsors/Delete/5
+        /*
+        // POST: Speakers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
-            var sponsor = await _context.Sponsors.SingleOrDefaultAsync(m => m.Sponid == id);
-            _context.Sponsors.Remove(sponsor);
+            var speaker = await _context.Speakers.SingleOrDefaultAsync(m => m.Speakerid == id);
+            _context.Speakers.Remove(speaker);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        */
 
-        private bool SponsorExists(long id)
+        private bool SpeakerExists(long id)
         {
-            return _context.Sponsors.Any(e => e.Sponid == id);
+            return _context.Speakers.Any(e => e.Speakerid == id);
         }
     }
 }

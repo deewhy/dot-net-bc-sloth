@@ -1,0 +1,54 @@
+@model DotNetBcBackend.Models.Speaker
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Speaker</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Speakerpic)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speakerpic)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Speakername)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speakername)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Speakeremail)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speakeremail)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Speakerphone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speakerphone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Speakerspec)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speakerspec)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Speakerbio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speakerbio)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Speakerid">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,52 @@
+@model IEnumerable<DotNetBcBackend.Models.Speaker>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Speakerpic)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Speakername)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Speakeremail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Speakerphone)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Speakerpic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Speakername)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Speakeremail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Speakerphone)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Speakerid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Speakerid">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

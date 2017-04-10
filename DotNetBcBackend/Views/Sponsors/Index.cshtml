@@ -30,15 +30,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Sponname)
             </td>
-            <td><img src="@Html.DisplayFor(modelItem => item.Sponimg)" />
+            <td><img src="@Html.DisplayFor(modelItem => item.Sponimg)" width="75" />
             </td>
             <td>
                 <a href="@Html.DisplayFor(modelItem => item.Sponlink)">@Html.DisplayFor(modelItem => item.Sponlink)</a>
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Sponid">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Sponid">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Sponid">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.Sponid">Details</a>
             </td>
         </tr>
 }
