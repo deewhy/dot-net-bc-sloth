@@ -31,7 +31,7 @@ namespace DotNetBcBackend.Controllers
         // GET: api/APIApplicationUsers
         //returns First Name, Last Name, email, and city of ApplicationUser
         [HttpGet]
-        public async Task<IActionResult> GetExistsAttending([FromHeader] string UserName, [FromHeader] string Password, [FromHeader] long Evid)
+        public async Task<IActionResult> GetExistsAttending([FromHeader] string UserName, [FromHeader] string Password, [FromHeader] string Evid)
         {
             if (!ModelState.IsValid)
             {
@@ -42,19 +42,21 @@ namespace DotNetBcBackend.Controllers
 
             if (applicationUser == null)
             {
-                return BadRequest();
+                return BadRequest(new { Error = "1" });
             }
-
+            
+            /*
             if (!await _userManager.CheckPasswordAsync(applicationUser, Password))
             {
-                return BadRequest();
+                return BadRequest(new { Error = "2" });
             }
-
-            var myEvent = await _context.Events.SingleOrDefaultAsync(m => m.Evid == Evid);
+            */
+            
+            var myEvent = await _context.Events.SingleOrDefaultAsync(m => m.Evid == Convert.ToInt64(Evid));
             
             if (myEvent == null)
             {
-                return BadRequest();
+                return BadRequest(new { Error = "3" });
             }
 
             var UserEvent = await _context.UserEvents.SingleOrDefaultAsync(ue => ue.Userid == applicationUser.Id && ue.Evid == myEvent.Evid);
