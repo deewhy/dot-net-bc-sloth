@@ -15,8 +15,58 @@ using Microsoft.Extensions.Logging;
 
 namespace DotNetBcBackend.Controllers
 {
-    public class APIAttendEvents
+    [Produces("application/json")]
+    [Route("api/APIAttendEvents")]
+    public class APIAttendEvents : Controller
     {
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public APIAttendEvents(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        {
+            _context = context;
+            _userManager = userManager;
+        }
+
+        // GET: api/APIApplicationUsers
+        //returns First Name, Last Name, email, and city of ApplicationUser
+        [HttpGet]
+        public async Task<IActionResult> GetExistsAttending([FromHeader] string UserName, [FromHeader] string Password, [FromHeader] long Evid)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var applicationUser = await _context.ApplicationUsers.SingleOrDefaultAsync(m => m.UserName == UserName);
+
+            if (applicationUser == null)
+            {
+                return BadRequest();
+            }
+
+            if (!await _userManager.CheckPasswordAsync(applicationUser, Password))
+            {
+                return BadRequest();
+            }
+
+            var myEvent = await _context.Events.SingleOrDefaultAsync(m => m.Evid == Evid);
+            
+            if (myEvent == null)
+            {
+                return BadRequest();
+            }
+
+            var UserEvent = await _context.UserEvents.SingleOrDefaultAsync(ue => ue.Userid == applicationUser.Id && ue.Evid == myEvent.Evid);
+
+            if (UserEvent == null)
+            {
+                return Ok(new { Exists = false, Attending = false });
+            }
+
+            return Ok(new { Exists = true, Attending = UserEvent.Attending });
+        }
+
 
     }
 }

@@ -9,7 +9,7 @@ namespace DotNetBcBackend.Models
     {
         public long Usereventid { get; set; }
         public string Userid { get; set; }
-        public string Evid { get; set; }
+        public long Evid { get; set; }
         public Boolean Attending { get; set; }
     }
 }
