@@ -1,0 +1,49 @@
+@model DotNetBcBackend.Models.Sponsor
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Sponsor</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Sponname" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Sponname" class="form-control" />
+                <span asp-validation-for="Sponname" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Sponimg" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Sponimg" class="form-control" />
+                <span asp-validation-for="Sponimg" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Sponlink" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Sponlink" class="form-control" />
+                <span asp-validation-for="Sponlink" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
