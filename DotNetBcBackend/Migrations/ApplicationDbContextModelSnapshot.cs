@@ -173,7 +173,7 @@ namespace DotNetBcBackend.Migrations
 
                     b.Property<bool>("Attending");
 
-                    b.Property<long>("Evid");
+                    b.Property<string>("Evid");
 
                     b.Property<string>("Userid");
 

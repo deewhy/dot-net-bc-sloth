@@ -34,32 +34,32 @@ namespace DotNetBcBackend.Data
             }
 
 
-            var admin = new ApplicationUser
+            var sampleMember = new ApplicationUser
             {
                 LockoutEnabled = true,
-                FirstName = "Medhat",
-                LastName = "Elmasry",
-                City = "Vancouver",
-                Email = "Medhat_Elmasry@bcit.ca",
-                NormalizedEmail = "MEDHAT_ELMASRY@BCIT.CA",
-                UserName = "admin",
-                NormalizedUserName = "ADMIN",
+                FirstName = "Jennifer",
+                LastName = "Johnson",
+                City = "Burnaby",
+                Email = "Bob_Johnson@bcit.ca",
+                NormalizedEmail = "BOB_JOHNSON@BCIT.CA",
+                UserName = "jjohnson",
+                NormalizedUserName = "JJOHNSON",
                 IsActive = true,
                 NotifyJobs = true,
-                Created = new DateTime(2017, 4, 1),
+                Created = DateTime.Now,
                 SecurityStamp = Guid.NewGuid().ToString()
             };
 
             //Hash the passwords
-            if (!db.Users.Any(u => u.UserName == admin.UserName))
+            if (!db.Users.Any(u => u.UserName == sampleMember.UserName))
             {
                 var password = new PasswordHasher<ApplicationUser>();
-                var hashed = password.HashPassword(admin, "P@$$w0rd");
-                admin.PasswordHash = hashed;
+                var hashed = password.HashPassword(sampleMember, "P@$$w0rd");
+                sampleMember.PasswordHash = hashed;
 
                 var userStore = new UserStore<ApplicationUser>(db);
-                await userStore.CreateAsync(admin);
-                
+                await userStore.CreateAsync(sampleMember);
+                await userStore.AddToRoleAsync(sampleMember, "MEMBER");
             }
 			
             //Assign users to roles, attempt 2
