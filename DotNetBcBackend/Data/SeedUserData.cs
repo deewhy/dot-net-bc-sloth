@@ -61,14 +61,6 @@ namespace DotNetBcBackend.Data
                 await userStore.CreateAsync(sampleMember);
                 await userStore.AddToRoleAsync(sampleMember, "MEMBER");
             }
-			
-            //Assign users to roles, attempt 2
-			//var userStoreTwo = new UserStore<ApplicationUser>(db);
-	        //await userStoreTwo.AddToRoleAsync(admin, "ADMIN");
-			
-            //Assign users to roles, attempt 1
-            //UserManager<ApplicationUser> userManager = isp.GetService<UserManager<ApplicationUser>>();
-            //await userManager.AddToRoleAsync(admin, "Admin");
             
             await db.SaveChangesAsync();
         }
